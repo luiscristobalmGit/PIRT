@@ -1,0 +1,89 @@
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+  
+.dashboard-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 180px;
+  transition: transform 0.3s;
+}
+
+.dashboard-card:hover {
+  transform: scale(1.05);
+}
+
+ion-icon {
+  font-size: 48px;
+  margin-bottom: 3px;
+  color: #3880ff;
+}
+
+ion-card-title {
+  font-size: 18px;
+  color: #222428;
+}
+
+/* Contenedor del botón y el tooltip */
+.tooltip-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.boton-salir {
+  background: rgba(255, 255, 255, 0.2);
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  min-height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.boton-salir ion-icon {
+  color: #ffffff;
+  font-size: 26px;
+}
+
+.boton-salir:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.tooltip-text {
+  position: absolute;
+  bottom: -40px; /* Ajustar la posición */
+  background: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateY(10px); /* Inicia abajo */
+}
+
+.tooltip-container:hover .tooltip-text {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0); /* Sube cuando se muestra */
+}
+
+ion-toolbar {
+  overflow: visible !important; /* Para que se vea el tooltip fuera de la barra */
+}

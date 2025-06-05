@@ -1,0 +1,67 @@
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="login-container">
+    <h2 class="login-title">Identificarse</h2>
+    <div class="login-card">
+      <div class="login-icon">
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </div>
+      <p class="login-subtitle">Datos del usuario</p>
+      
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <ion-item lines="full" class="ion-margin-bottom">
+          <ion-label position="floating">Cuenta</ion-label>
+          <ion-input 
+            formControlName="cuenta" 
+            type="text"
+            placeholder="Ingrese su cuenta"
+            autocomplete="username"
+            required>
+          </ion-input>
+        </ion-item>
+
+        <ion-text color="danger" *ngIf="loginForm.get('cuenta')?.touched && loginForm.get('cuenta')?.invalid">
+          <small *ngIf="loginForm.get('cuenta')?.errors?.['required']" class="error-text">
+            La cuenta es requerida
+          </small>
+          <small *ngIf="loginForm.get('cuenta')?.errors?.['minlength']" class="error-text">
+            Mínimo 3 caracteres
+          </small>
+        </ion-text>
+
+        <ion-item lines="full" class="ion-margin-bottom">
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input 
+            formControlName="contrasena" 
+            type="password"
+            placeholder="Ingrese su contraseña"
+            autocomplete="current-password"
+            required>
+          </ion-input>
+        </ion-item>
+
+        <ion-text color="danger" *ngIf="loginForm.get('contrasena')?.touched && loginForm.get('contrasena')?.invalid">
+          <small *ngIf="loginForm.get('contrasena')?.errors?.['required']" class="error-text">
+            La contraseña es requerida
+          </small>
+          <small *ngIf="loginForm.get('contrasena')?.errors?.['minlength']" class="error-text">
+            Mínimo 4 caracteres
+          </small>
+        </ion-text>
+
+        <ion-button 
+          expand="block" 
+          type="submit" 
+          class="login-button"
+          [disabled]="loginForm.invalid || isLoading">
+          <ion-spinner *ngIf="isLoading"></ion-spinner>
+          <span *ngIf="!isLoading">Iniciar Sesión</span>
+        </ion-button>
+
+        <div *ngIf="errorMessage" class="error-message">
+          <ion-icon name="warning-outline"></ion-icon>
+          {{ errorMessage }}
+        </div>
+      </form>
+    </div>
+  </div>
+</ion-content>

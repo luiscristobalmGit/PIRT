@@ -1,0 +1,16 @@
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.empty-column {
+  width: 100%;
+}
+
+.form-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

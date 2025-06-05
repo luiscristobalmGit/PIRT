@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title>PIRT - Inicio</ion-title>
+    <ion-buttons slot="end">
+      <div class="tooltip-container" (click)="salir()">
+        <div class="boton-salir">
+          <ion-icon name="log-out-outline"></ion-icon>
+        </div>
+        <div class="tooltip-text">Cerrar sesión</div>
+      </div>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" fullscreen="true">
+  <div class="dashboard-grid">
+    <ion-card button (click)="navigateTo('/registro-app')" class="dashboard-card">
+      <ion-card-header>
+        <ion-icon name="document-text-outline" size="large"></ion-icon>
+        <ion-card-title>Registro de APP's</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
+    <ion-card button (click)="navigateTo('/catalogos')" class="dashboard-card">
+      <ion-card-header>
+        <ion-icon name="albums-outline" size="large"></ion-icon>
+        <ion-card-title>Catálogos</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
+    <ion-card button (click)="navigateTo('/bitacora')" class="dashboard-card">
+      <ion-card-header>
+        <ion-icon name="clipboard-outline" size="large"></ion-icon>
+        <ion-card-title>Bitácora</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+  </div>
+</ion-content>

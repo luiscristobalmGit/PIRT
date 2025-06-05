@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Catálogos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Gestión de Catálogos</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+<!--       
+      <ion-button expand="full" color="success">
+        Crear nuevo catálogo
+      </ion-button>
+ -->
+      <ion-list>
+        <ion-item *ngFor="let catalogo of catalogos">
+          <ion-label>
+            {{ catalogo.nombre }}
+          </ion-label>
+          <ion-button slot="end" fill="clear" color="primary">
+            Editar
+          </ion-button>
+<!--           
+          <ion-button slot="end" fill="clear" color="danger">
+            Eliminar
+          </ion-button>
+ -->        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

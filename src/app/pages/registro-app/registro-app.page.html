@@ -1,0 +1,223 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registro de APP's</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" fullscreen="true">
+  <form [formGroup]="formatoForm" (ngSubmit)="onSubmit()">
+    <div class="form-grid">
+      <!-- Columna 1 (vacía) -->
+      <div class="empty-column"></div>
+
+      <!-- Columna 2 -->
+      <div class="form-column">
+
+        <ion-item id="open-date-picker" button>
+          <ion-label>Fecha</ion-label>
+          <ion-note slot="end">
+            {{ formatoForm.value.fecha ? (formatoForm.value.fecha | date: 'dd/MM/yyyy') : 'Seleccionar' }}
+          </ion-note>
+        </ion-item>
+
+        <ion-popover
+          trigger="open-date-picker"
+          [isOpen]="showDatePicker"
+          (didDismiss)="showDatePicker = false"
+        >
+          <ng-template>
+            <ion-datetime
+              [value]="formatoForm.value.fecha"
+              presentation="date"
+              (ionChange)="updateDate($event)">
+            </ion-datetime>
+          </ng-template>
+        </ion-popover>
+
+        <!-- Seleccionar Hora -->
+        <ion-item button (click)="openTimePicker()">
+          <ion-label>Hora</ion-label>
+          <ion-note slot="end">
+            {{ formatoForm.value.hora ? (formatoForm.value.hora | date:'HH:mm') : 'Seleccionar' }}
+          </ion-note>
+        </ion-item>
+
+        <ion-modal 
+          [isOpen]="showTimePicker" 
+          (didDismiss)="showTimePicker = false"
+          [breakpoints]="[0, 0.3]" 
+          [initialBreakpoint]="0.3" 
+          handleBehavior="none"
+          >
+          <ng-template>
+            <ion-datetime
+              presentation="time"
+              [value]="formatoForm.value.hora"
+              (ionChange)="updateTime($event)">
+            </ion-datetime>
+          </ng-template>
+        </ion-modal>
+
+        <ion-item>
+          <ion-select formControlName="estatus" position="stacked" label="Estatus" labelPlacement="floating">
+            <ion-select-option value="Nuevo">Nuevo</ion-select-option>
+            <ion-select-option value="Existente">Existente</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="nombreProyecto" position="stacked" label="Nombre del Proyecto" labelPlacement="floating" placeholder="Ingrese la información"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-select formControlName="areaSolicitante" position="stacked" label="Área Solicitante" labelPlacement="floating">
+            <ion-select-option value="Gestion">Oficina de Gestión</ion-select-option>
+            <ion-select-option value="DIT">Departamento de Infraestructura Tecnológica (DTI)</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="responsable" position="stacked" label="Responsable" labelPlacement="floating" placeholder="Ingrese la información"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="justificacion" position="stacked" label="Justificación del Proyecto" labelPlacement="floating" placeholder="Ingrese la información"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-select formControlName="entorno" position="stacked" label="Entorno" labelPlacement="floating">
+            <ion-select-option value="Producción">Producción</ion-select-option>
+            <ion-select-option value="Desarrollo">Desarrollo</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="tamanoArchivosGB" position="stacked" label="Tamaño Anual de Archivos (GB)" labelPlacement="floating" placeholder="Ingrese la información" type="number"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="lenguajeProgramacion" position="stacked" label="Lenguaje de Programación" labelPlacement="floating" placeholder="Ingrese la información"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="plataformaFrontend" position="stacked" label="Plataforma Frontend" labelPlacement="floating" placeholder="Ingrese la información"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="plataformaBackend" position="stacked" label="Plataforma Backend" labelPlacement="floating" placeholder="Ingrese la información"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-select formControlName="migraVersionPlataformaActual" position="stacked" label="Migrar a versión más reciente" labelPlacement="floating">
+            <ion-select-option value="Sí">Sí</ion-select-option>
+            <ion-select-option value="No">No</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-select formControlName="migraNuevaTecnologiaHardware" position="stacked" label="Migrar a nueva tecnología de hardware" labelPlacement="floating">
+            <ion-select-option value="Sí">Sí</ion-select-option>
+            <ion-select-option value="No">No</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+      </div>
+
+      <!-- Columna 3 -->
+      <div class="form-column">
+
+        <ion-item>
+          <ion-input formControlName="especificarSoftware" position="stacked" label="Especificar Software" labelPlacement="floating" placeholder="Ingrese la información"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="especificarHardware" position="stacked" label="Especificar Hardware" labelPlacement="floating" placeholder="Ingrese la información"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-select formControlName="bdManejador" position="stacked" label="Manejador de Base de Datos" labelPlacement="floating">
+            <ion-select-option value="SQL Server">SQL Server</ion-select-option>
+            <ion-select-option value="MySQL">MySQL</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="bdVersion" position="stacked" label="Versión de Base de Datos" labelPlacement="floating" placeholder="Ingrese la información"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-select formControlName="bdMigrarVersionReciente" position="stacked" label="Migrar a versión reciente" labelPlacement="floating">
+            <ion-select-option value="Sí">Sí</ion-select-option>
+            <ion-select-option value="No">No</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="bdNombre" position="stacked" label="Nombre de Base de Datos" labelPlacement="floating" placeholder="Ingrese la información"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="bdTamanoInicial" position="stacked" label="Tamaño Inicial (MB)" labelPlacement="floating" placeholder="Ingrese la información" type="number"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="bdUsuariosConcurrentes" position="stacked" label="Cantidad de Usuarios Concurrentes" labelPlacement="floating" placeholder="Ingrese la información" type="number"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="bdTamanoActual" position="stacked" label="amaño Actual (MB)" labelPlacement="floating" placeholder="Ingrese la información" type="number"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="bdCrecimiento12Meses" position="stacked" label="Crecimiento Promedio 12 meses (GB)" labelPlacement="floating" placeholder="Ingrese la información" type="number"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-select formControlName="bdCriticidad" position="stacked" label="Criticidad de la Base de Datos" labelPlacement="floating">
+            <ion-select-option value="Alta">Alta</ion-select-option>
+            <ion-select-option value="Media">Media</ion-select-option>
+            <ion-select-option value="Baja">Baja</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-select formControlName="bdTipo" position="stacked" label="Tipo de Base de Datos" labelPlacement="floating">
+            <ion-select-option value="Consulta">Consulta</ion-select-option>
+            <ion-select-option value="Transaccional">Transaccional</ion-select-option>
+            <ion-select-option value="Mixta">Mixta</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-select formControlName="bdRespaldo" position="stacked" label="Tiempo de Conservación de Respaldo" labelPlacement="floating">
+            <ion-select-option value="Indefinido">Indefinido</ion-select-option>
+            <ion-select-option value="Temporal">Temporal</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="bdDuracionRespaldo" position="stacked" label="Duración del respaldo (si es temporal)" labelPlacement="floating" placeholder="Ingrese la información"></ion-input>
+        </ion-item>
+
+      </div>
+
+      <!-- Columna 4 (vacía) -->
+      <div class="empty-column"></div>
+
+      <!-- Botón de Guardar, ocupando columna 2 y 3 -->
+      <div class="empty-column"></div>
+
+      <div class="form-column" style="grid-column: span 2; text-align: center;">
+        <ion-button expand="block" type="submit" style="margin-top: 20px; width: 100%;">
+          Guardar
+        </ion-button>
+      </div>
+
+      <div class="empty-column"></div>
+
+    </div>
+  </form>
+</ion-content>
